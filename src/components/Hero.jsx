@@ -1,4 +1,4 @@
-function Hero() {
+function Hero({ onGetStarted }) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#E8F4F8] to-white relative overflow-hidden flex items-center p-8">
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full z-[2] relative">
@@ -32,7 +32,16 @@ function Hero() {
           <p className="text-lg leading-relaxed text-gray-700 max-w-[500px] mt-4">
             Organize and manage your team like a boss with Bitrix24, a free online task checklist app packing more capabilities than you can imagine.
           </p>
-          <button className="bg-[#4A90E2] text-white border-none py-4 px-10 text-lg font-semibold rounded-lg cursor-pointer transition-colors duration-300 w-fit mt-4 hover:bg-[#357ABD]">
+          <button 
+            type="button"
+            onClick={(e) => {
+              e.preventDefault()
+              if (onGetStarted) {
+                onGetStarted()
+              }
+            }}
+            className="bg-[#4A90E2] text-white border-none py-4 px-10 text-lg font-semibold rounded-lg cursor-pointer transition-colors duration-300 w-fit mt-4 hover:bg-[#357ABD]"
+          >
             Get Started
           </button>
         </div>

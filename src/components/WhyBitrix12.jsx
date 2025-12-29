@@ -1,4 +1,4 @@
-function WhyBitrix12() {
+function WhyBitrix12({ onGetStarted }) {
   const features = [
     {
       icon: "✓",
@@ -127,7 +127,16 @@ function WhyBitrix12() {
           <p className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
             Ready to transform your task management?
           </p>
-          <button className="bg-[#4A90E2] text-white border-none py-5 px-12 text-xl font-semibold rounded-lg cursor-pointer transition-all duration-300 hover:bg-[#357ABD] hover:shadow-[0_8px_30px_rgba(74,144,226,0.4)] transform hover:-translate-y-1">
+          <button 
+            type="button"
+            onClick={(e) => {
+              e.preventDefault()
+              if (onGetStarted) {
+                onGetStarted()
+              }
+            }}
+            className="bg-[#4A90E2] text-white border-none py-5 px-12 text-xl font-semibold rounded-lg cursor-pointer transition-all duration-300 hover:bg-[#357ABD] hover:shadow-[0_8px_30px_rgba(74,144,226,0.4)] transform hover:-translate-y-1"
+          >
             Get Started Free
           </button>
         </div>
