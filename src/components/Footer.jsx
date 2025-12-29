@@ -1,18 +1,30 @@
-function Footer() {
+function Footer({ onPrivacyClick, onTermsClick }) {
   return (
-    <footer className="bg-gradient-to-t from-[#E8F4F8] to-white border-t border-[#4A90E2]/10 py-8 px-4 mt-8">
+    <footer className="bg-gradient-to-t from-[#E8F4F8] to-white dark:from-gray-900 dark:to-gray-800 border-t border-[#4A90E2]/10 dark:border-blue-500/20 py-8 px-4 mt-8 transition-colors duration-300">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2 text-[#4A90E2] font-extrabold text-xl md:text-2xl">
+        <div className="flex items-center gap-2 text-[#4A90E2] dark:text-blue-400 font-extrabold text-xl md:text-2xl">
           <span className="font-sans">Bitrix12</span>
-          <span className="text-base align-top font-normal text-[#357abd]">&copy; {new Date().getFullYear()}</span>
+          <span className="text-base align-top font-normal text-[#357abd] dark:text-blue-500">&copy; {new Date().getFullYear()}</span>
         </div>
-        <div className="text-gray-500 text-sm md:text-base text-center">
-          Crafted with <span className="text-[#4A90E2]">&#10084;&#65039;</span> for teams and makers
+        <div className="text-gray-500 dark:text-gray-400 text-sm md:text-base text-center">
+          Crafted with <span className="text-[#4A90E2] dark:text-blue-400">&#10084;&#65039;</span> for teams and makers
         </div>
-        <div className="flex items-center space-x-3 text-[#4A90E2] text-lg">
-          <a href="#" aria-label="Privacy Policy" className="hover:text-[#357abd] transition">Privacy</a>
+        <div className="flex items-center space-x-3 text-[#4A90E2] dark:text-blue-400 text-lg">
+          <button 
+            onClick={onPrivacyClick}
+            aria-label="Privacy Policy" 
+            className="hover:text-[#357abd] dark:hover:text-blue-500 transition cursor-pointer bg-transparent border-none"
+          >
+            Privacy
+          </button>
           <span className="hidden md:inline">|</span>
-          <a href="#" aria-label="Terms of Service" className="hover:text-[#357abd] transition">Terms</a>
+          <button 
+            onClick={onTermsClick}
+            aria-label="Terms of Service" 
+            className="hover:text-[#357abd] dark:hover:text-blue-500 transition cursor-pointer bg-transparent border-none"
+          >
+            Terms
+          </button>
         </div>
         {/* Social icons */}
         <div className="flex items-center space-x-4 mt-4 md:mt-0">

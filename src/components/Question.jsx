@@ -36,17 +36,17 @@ function Question() {
   };
 
   return (
-    <section className="bg-gradient-to-b from-white to-[#E8F4F8] py-16 px-4">
+    <section className="bg-gradient-to-b from-white to-[#E8F4F8] dark:from-gray-800 dark:to-gray-900 py-16 px-4 transition-colors duration-300">
       <div className="max-w-2xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-[#4A90E2] mb-10 text-center">Frequently Asked Questions</h2>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#4A90E2] dark:text-blue-400 mb-10 text-center">Frequently Asked Questions</h2>
         <div className="space-y-4">
           {faqs.map(({ question, answer }, idx) => (
             <div
               key={idx}
-              className="border border-gray-200 rounded-xl bg-white overflow-hidden transition-all duration-200 shadow hover:border-[#4A90E2]/60 hover:shadow-xl hover:scale-[1.015]"
+              className="border border-gray-200 dark:border-gray-700 rounded-xl bg-white dark:bg-gray-800 overflow-hidden transition-all duration-200 shadow hover:border-[#4A90E2]/60 dark:hover:border-blue-500/60 hover:shadow-xl hover:scale-[1.015]"
             >
               <button
-                className="w-full flex justify-between items-center p-5 text-left hover:bg-[#e8f4f8] transition font-semibold text-lg text-gray-800 focus:outline-none"
+                className="w-full flex justify-between items-center p-5 text-left hover:bg-[#e8f4f8] dark:hover:bg-gray-700 transition font-semibold text-lg text-gray-800 dark:text-gray-200 focus:outline-none"
                 onClick={() => toggle(idx)}
                 aria-expanded={openIdx === idx}
                 aria-controls={`faq${idx}`}
@@ -55,7 +55,7 @@ function Question() {
                 <span className={`text-2xl ml-2 transition-transform duration-200 ${openIdx === idx ? 'rotate-180' : ''}`}>⌄</span>
               </button>
               {openIdx === idx && (
-                <div id={`faq${idx}`} className="px-5 pb-5 text-gray-700 animate-fade-in">
+                <div id={`faq${idx}`} className="px-5 pb-5 text-gray-700 dark:text-gray-300 animate-fade-in">
                   {answer}
                 </div>
               )}

@@ -33,14 +33,14 @@ function WhyBitrix12({ onGetStarted }) {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-[#E8F4F8] py-20 px-8">
+    <div className="min-h-screen bg-gradient-to-b from-white to-[#E8F4F8] dark:from-gray-800 dark:to-gray-900 py-20 px-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black mb-6">
-            Why Choose <span className="text-[#4A90E2]">Bitrix12</span>?
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black dark:text-white mb-6">
+            Why Choose <span className="text-[#4A90E2] dark:text-blue-400">Bitrix12</span>?
           </h2>
-          <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             The ultimate free task checklist app designed to help you and your team stay organized, productive, and in control.
           </p>
         </div>
@@ -50,15 +50,15 @@ function WhyBitrix12({ onGetStarted }) {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+              className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
             >
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#4A90E2] to-[#357ABD] flex items-center justify-center text-white text-3xl font-bold mb-6 shadow-[0_4px_20px_rgba(74,144,226,0.3)]">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#4A90E2] to-[#357ABD] dark:from-blue-500 dark:to-blue-600 flex items-center justify-center text-white text-3xl font-bold mb-6 shadow-[0_4px_20px_rgba(74,144,226,0.3)]">
                 {feature.icon}
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 {feature.description}
               </p>
             </div>
@@ -66,11 +66,11 @@ function WhyBitrix12({ onGetStarted }) {
         </div>
 
         {/* Benefits Section */}
-        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100">
+        <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-2xl border border-gray-100 dark:border-gray-700 transition-colors duration-300">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Everything You Need for <span className="text-[#4A90E2]">Task Management</span>
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                Everything You Need for <span className="text-[#4A90E2] dark:text-blue-400">Task Management</span>
               </h3>
               <ul className="space-y-4">
                 {[
@@ -82,39 +82,39 @@ function WhyBitrix12({ onGetStarted }) {
                   "Access from anywhere, on any device"
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <span className="text-[#4A90E2] text-xl font-bold mt-1">✓</span>
-                    <span className="text-gray-700 text-lg">{item}</span>
+                    <span className="text-[#4A90E2] dark:text-blue-400 text-xl font-bold mt-1">✓</span>
+                    <span className="text-gray-700 dark:text-gray-300 text-lg">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-gradient-to-br from-[#E8F4F8] to-white rounded-2xl p-8 border-2 border-[#4A90E2]/20">
+            <div className="bg-gradient-to-br from-[#E8F4F8] to-white dark:from-gray-700 dark:to-gray-800 rounded-2xl p-8 border-2 border-[#4A90E2]/20 dark:border-blue-500/20 transition-colors duration-300">
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#4A90E2] flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-12 h-12 rounded-full bg-[#4A90E2] dark:bg-blue-600 flex items-center justify-center text-white font-bold text-xl">
                     1
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 text-lg">Sign Up Free</h4>
-                    <p className="text-gray-600 text-sm">Create your account in seconds</p>
+                    <h4 className="font-bold text-gray-900 dark:text-white text-lg">Sign Up Free</h4>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">Create your account in seconds</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#4A90E2] flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-12 h-12 rounded-full bg-[#4A90E2] dark:bg-blue-600 flex items-center justify-center text-white font-bold text-xl">
                     2
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 text-lg">Create Your First Task</h4>
-                    <p className="text-gray-600 text-sm">Start organizing immediately</p>
+                    <h4 className="font-bold text-gray-900 dark:text-white text-lg">Create Your First Task</h4>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">Start organizing immediately</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#4A90E2] flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-12 h-12 rounded-full bg-[#4A90E2] dark:bg-blue-600 flex items-center justify-center text-white font-bold text-xl">
                     3
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 text-lg">Invite Your Team</h4>
-                    <p className="text-gray-600 text-sm">Collaborate and get things done</p>
+                    <h4 className="font-bold text-gray-900 dark:text-white text-lg">Invite Your Team</h4>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">Collaborate and get things done</p>
                   </div>
                 </div>
               </div>
@@ -124,7 +124,7 @@ function WhyBitrix12({ onGetStarted }) {
 
         {/* CTA Section */}
         <div className="text-center mt-16">
-          <p className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
+          <p className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8">
             Ready to transform your task management?
           </p>
           <button 

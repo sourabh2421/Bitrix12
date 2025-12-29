@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import API_BASE_URL from '../../config/api.js'
 
 function AuthPage({ onClose, onLoginSuccess }) {
   const [isLogin, setIsLogin] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,32 +18,74 @@ function AuthPage({ onClose, onLoginSuccess }) {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (isLogin) {
-      // Check login credentials
-      if (formData.email === 'dec99343@gmailcom' && formData.password === 'sourabh') {
-        if (onLoginSuccess) {
-          onLoginSuccess()
+    setLoading(true)
+
+    try {
+      if (isLogin) {
+        // Login
+        const response = await fetch(`${API_BASE_URL}/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password
+          })
+        })
+
+        const data = await response.json()
+
+        if (response.ok) {
+          localStorage.setItem('token', data.token)
+          localStorage.setItem('user', JSON.stringify(data.user))
+          if (onLoginSuccess) {
+            onLoginSuccess(data.token, data.user)
+          }
+          onClose()
+        } else {
+          alert(data.message || 'Login failed!')
         }
-        onClose()
       } else {
-        alert('Invalid email or password!')
-      }
-    } else {
-      // Check signup credentials
-      if (formData.password !== formData.confirmPassword) {
-        alert('Passwords do not match!')
-        return
-      }
-      if (formData.email === 'dec99343@gmail.com' && formData.password === 'sourabh') {
-        if (onLoginSuccess) {
-          onLoginSuccess()
+        // Signup
+        if (formData.password !== formData.confirmPassword) {
+          alert('Passwords do not match!')
+          setLoading(false)
+          return
         }
-        onClose()
-      } else {
-        alert('Invalid credentials for signup!')
+
+        const response = await fetch(`${API_BASE_URL}/auth/register`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+            name: formData.name
+          })
+        })
+
+        const data = await response.json()
+
+        if (response.ok) {
+          localStorage.setItem('token', data.token)
+          localStorage.setItem('user', JSON.stringify(data.user))
+          if (onLoginSuccess) {
+            onLoginSuccess(data.token, data.user)
+          }
+          onClose()
+        } else {
+          alert(data.message || 'Registration failed!')
+        }
       }
+    } catch (error) {
+      alert('An error occurred. Please check if the server is running.')
+      console.error('Auth error:', error)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -55,13 +99,13 @@ function AuthPage({ onClose, onLoginSuccess }) {
       }}
     >
       <div 
-        className="bg-white rounded-2xl shadow-2xl w-full max-w-md relative my-4 max-h-[90vh] overflow-y-auto"
+        className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md relative my-4 max-h-[90vh] overflow-y-auto transition-colors duration-300"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors z-10"
+          className="absolute top-3 right-3 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors z-10"
           aria-label="Close"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,14 +116,14 @@ function AuthPage({ onClose, onLoginSuccess }) {
         <div className="p-6 md:p-8">
           {/* Logo/Brand */}
           <div className="text-center mb-5">
-            <h1 className="text-3xl font-bold text-[#4A90E2] mb-1">Bitrix12®</h1>
-            <p className="text-sm text-gray-600">
+            <h1 className="text-3xl font-bold text-[#4A90E2] dark:text-blue-400 mb-1">Bitrix12®</h1>
+            <p className="text-sm text-gray-600 dark:text-gray-300">
               {isLogin ? 'Welcome back!' : 'Start organizing your tasks today'}
             </p>
           </div>
 
           {/* Toggle Buttons */}
-          <div className="flex gap-3 mb-6 bg-[#F5F7FA] p-1 rounded-lg">
+          <div className="flex gap-3 mb-6 bg-[#F5F7FA] dark:bg-gray-700 p-1 rounded-lg transition-colors duration-300">
             <button
               onClick={() => setIsLogin(false)}
               className={`flex-1 py-2 px-3 rounded-md text-sm font-semibold transition-all duration-300 ${
@@ -186,9 +230,10 @@ function AuthPage({ onClose, onLoginSuccess }) {
 
             <button
               type="submit"
-              className="w-full bg-[#4A90E2] text-white py-3 px-6 rounded-lg font-semibold text-base hover:bg-[#357ABD] transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+              disabled={loading}
+              className="w-full bg-[#4A90E2] text-white py-3 px-6 rounded-lg font-semibold text-base hover:bg-[#357ABD] transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLogin ? 'Login' : 'Create Account'}
+              {loading ? 'Processing...' : (isLogin ? 'Login' : 'Create Account')}
             </button>
           </form>
 
